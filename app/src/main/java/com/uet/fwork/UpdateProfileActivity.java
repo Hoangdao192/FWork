@@ -1,6 +1,7 @@
 package com.uet.fwork;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -67,7 +68,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         button = findViewById(R.id.saveEdit);
 
-        Query query = reference.orderByChild("email").equalTo(user.getEmail());
+        Query query = reference.orderByChild("id").equalTo(user.getUid());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,6 +138,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 result.put("sex",sex);
                 result.put("yearOfExperience", Double.parseDouble(expeYears));
                 reference.child(currentUid).updateChildren(result);
+
+                Context context = getApplicationContext();
+                CharSequence text = "Lưu thông tin thành công!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setMargin(50,150);
+                toast.show();
             }
         });
     }

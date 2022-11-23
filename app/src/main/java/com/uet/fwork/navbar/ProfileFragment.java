@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 import com.uet.fwork.R;
 import com.uet.fwork.UpdateProfileActivity;
 import com.uet.fwork.account.login.LoginActivity;
@@ -33,7 +34,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     DatabaseReference databaseReference;
 
     ImageView avatarIv;
-    TextView nameTv, emailTv, phoneTv, sexTv, birthTv, workYearTv, jobTv;
+    TextView nameTv, emailTv, phoneTv, sexTv, birthTv, workYearTv, jobTv, nameTitle, birthTitle, sexTitle, expTitle, jobTitle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,15 +44,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
 
-        Button logout_btn =(Button) view.findViewById(R.id.return_button);
-        logout_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent =new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Button logout_btn =(Button) view.findViewById(R.id.return_button);
+//        logout_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseAuth.getInstance().signOut();
+//                Intent intent =new Intent(getActivity(), LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         Button edit_profile_button =(Button) view.findViewById(R.id.edtProfile_button);
         edit_profile_button.setOnClickListener(new View.OnClickListener() {
@@ -70,11 +71,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         jobTv = view.findViewById(R.id.jobTv);
         workYearTv = view.findViewById(R.id.workYearTv);
         birthTv = view.findViewById(R.id.birthTv);
+        nameTitle = view.findViewById(R.id.nameTitle);
+        birthTitle = view.findViewById(R.id.birthTitle);
+        sexTitle = view.findViewById(R.id.sexTitle);
+        jobTitle = view.findViewById(R.id.jobTitle);
+        expTitle = view.findViewById(R.id.expTitle);
 
 
         // Đoạn này m có thể dùng userRepository để lấy ra user bằng udi thì hơn ấy
         //  Hoặc m có thể querry trực tiếp như thế này databaseReference.child(uid).get
-        Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
+        Query query = databaseReference.orderByChild("id").equalTo(user.getUid());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,14 +103,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
 
 
-                        //Picasso.get().load(image).into(avatarIv);
+//                    Picasso.get().load(image).into(avatarIv);
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 

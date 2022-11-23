@@ -8,324 +8,294 @@
     android:backgroundTint="#DDEFFF"
     tools:context=".navbar.ProfileFragment">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="-21dp"
+        android:layout_marginEnd="2dp"
         android:foregroundTint="#386893">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="453dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:foregroundTint="#EFD7D7"
+                android:src="@drawable/vector_116"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/edtProfile_button"
+                android:layout_width="63dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="54dp"
+                android:backgroundTint="#6B8CFF"
+                android:fontFamily="sans-serif"
+                android:text="Sửa"
+                android:textSize="11dp"
+                android:textStyle="bold"
+                app:cornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Thông tin của tôi"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatarIv"
+                android:layout_width="101dp"
+                android:layout_height="89dp"
+                android:layout_marginTop="40dp"
+                android:background="#9A9696"
+                android:backgroundTint="#DFDBDB"
+                android:src="@drawable/user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/nameTitle"
+                android:layout_width="91dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="60dp"
+                android:text="Họ và tên"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/avatarIv" />
+
+            <TextView
+                android:id="@+id/nameTv"
+                android:layout_width="237dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="60dp"
+                android:text="name"
+                android:textAlignment="center"
+                android:textColor="#5A2D22"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.908"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/avatarIv" />
+
+            <TextView
+                android:id="@+id/birthTv"
+                android:layout_width="223dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="40dp"
+                android:text="birth"
+                android:textAlignment="center"
+                android:textColor="#5A2D22"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.867"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTv" />
+
+            <TextView
+                android:id="@+id/sexTv"
+                android:layout_width="214dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="28dp"
+                android:text="sex"
+                android:textAlignment="center"
+                android:textColor="@color/dark_purple"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.852"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/birthTv" />
+
+            <TextView
+                android:id="@+id/birthTitle"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="48dp"
+                android:text="Ngày sinh"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTitle" />
+
+            <TextView
+                android:id="@+id/sexTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:text="Giới tính"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/birthTitle" />
+
+            <TextView
+                android:id="@+id/jobTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="36dp"
+                android:text="Chuyên ngành"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sexTitle" />
+
+            <TextView
+                android:id="@+id/jobTv"
+                android:layout_width="232dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="16dp"
+                android:text="job"
+                android:textAlignment="center"
+                android:textColor="#5A2D22"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/jobTitle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/expTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="44dp"
+                android:text="Kinh nghiệm"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jobTitle" />
+
+            <TextView
+                android:id="@+id/workYearTv"
+                android:layout_width="204dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="36dp"
+                android:text="year"
+                android:textAlignment="center"
+                android:textColor="#5A2D22"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.811"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jobTv" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="112dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="44dp"
+                android:text="Điện thoại"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/expTitle" />
+
+            <TextView
+                android:id="@+id/phoneTv"
+                android:layout_width="222dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="40dp"
+                android:text="phone"
+                android:textAlignment="center"
+                android:textColor="#5A2D22"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.904"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/workYearTv" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="90dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="36dp"
+                android:text="Email"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#5A2D22"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/emailTv"
+                android:layout_width="219dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="36dp"
+                android:text="mail"
+                android:textAlignment="center"
+                android:textColor="#5A2D22"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.89"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneTv" />
+
+            <TextView
+                android:id="@+id/changePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="24dp"
+                android:text="Đổi mật khẩu"
+                android:textColor="#001D85"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="494dp"
-            android:layout_height="177dp"
-            android:foregroundTint="#EFD7D7"
-            android:src="@drawable/vector_116"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-27dp" />
-
-        <Button
-            android:id="@+id/return_button"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#70899E"
-            android:textAlignment="center"
-            app:cornerRadius="15dp"
-            app:icon="@drawable/arrow_left"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-        <Button
-            android:id="@+id/edtProfile_button"
-            android:layout_width="77dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#6B8CFF"
-            android:fontFamily="sans-serif"
-            android:text="Sửa"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Thông tin của tôi"
-            android:textColor="#FFF"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/avatarIv"
-            android:layout_width="101dp"
-            android:layout_height="89dp"
-            android:layout_marginStart="176dp"
-            android:layout_marginTop="96dp"
-            android:background="#9A9696"
-            android:backgroundTint="#DFDBDB"
-            android:src="@drawable/user"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="91dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="226dp"
-        android:text="Họ và tên"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <TextView
-        android:id="@+id/nameTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="224dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/birthTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="354dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/sexTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="@color/dark_purple"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="290dp"
-        android:text="Ngày sinh"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="354dp"
-        android:text="Giới tính"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="418dp"
-        android:text="Chuyên ngành"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/jobTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="418dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="482dp"
-        android:text="Kinh nghiệm"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <TextView
-        android:id="@+id/workYearTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="482dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="91dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="546dp"
-        android:text="Điện thoại"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <TextView
-        android:id="@+id/phoneTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="546dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="91dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="610dp"
-        android:text="Email"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <TextView
-        android:id="@+id/emailTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="610dp"
-        android:layout_marginRight="16dp"
-        android:textAlignment="center"
-        android:textColor="#5A2D22"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/changePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="21dp"
-        android:text="Đổi mật khẩu"
-        android:textColor="#001D85"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </RelativeLayout>
