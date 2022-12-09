@@ -1,6 +1,8 @@
 package com.uet.fwork.navbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -29,13 +31,16 @@ public class DashboardActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment = new HomeFragment();
+    private HomeFragment homeFragment = new HomeFragment();
     private CandidateDashboardFragment candidateDashboardFragment = new CandidateDashboardFragment();
     private EmployerDashboardFragment employerDashboardFragment = new EmployerDashboardFragment();
     private NotificationFragment notificationFragment = new NotificationFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
-    SearchFragment searchFragment = new SearchFragment();
-    ChatListFragment inboxFragment = new ChatListFragment();
+    private Fragment dashboardFragment = new ProfileFragment();
+    private SearchFragment searchFragment = new SearchFragment();
+    private ChatListFragment inboxFragment = new ChatListFragment();
+    private Fragment active;
+
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,50 +48,87 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuthHelper = FirebaseAuthHelper.getInstance();
-
         userRepository = UserRepository.getInstance();
 
+        homeFragment = new HomeFragment();
+        notificationFragment = new NotificationFragment();
+        String userRole = firebaseAuthHelper.getUser().getRole();
+        if (userRole != null) {
+            if (userRole.equals(UserRole.CANDIDATE)) {
+                dashboardFragment = new CandidateDashboardFragment();
+            } else if (userRole.equals(UserRole.EMPLOYER)) {
+                dashboardFragment = new EmployerDashboardFragment();
+            }
+        }
+        searchFragment = new SearchFragment();
+        inboxFragment = new ChatListFragment();
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.content, searchFragment, "search")
+                .hide(searchFragment).commit();
+        fragmentManager.beginTransaction()
+                .add(R.id.content, notificationFragment, "notification")
+                .hide(notificationFragment).commit();
+        fragmentManager.beginTransaction()
+                .add(R.id.content, inboxFragment, "chat")
+                .hide(inboxFragment).commit();
+        fragmentManager.beginTransaction()
+                .add(R.id.content, dashboardFragment, "dashboard")
+                .hide(dashboardFragment).commit();
+        active = homeFragment;
+        fragmentManager.beginTransaction().add(R.id.content, homeFragment, "home").commit();
+
         bottomNavigationView = findViewById(R.id.navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
+                clearFragmentManagerBackstack();
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
+                        fragmentManager.beginTransaction().show(homeFragment).commit();
+                        active = homeFragment;
+                        hideAllFragment();
                         return true;
                     case R.id.nav_profile:
-                        String userRole = firebaseAuthHelper.getUser().getRole();
-                        if (userRole != null) {
-                            if (userRole.equals(UserRole.CANDIDATE)) {
-                                getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.content, candidateDashboardFragment)
-                                        .commit();
-                            } else if (userRole.equals(UserRole.EMPLOYER)) {
-                                getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.content, employerDashboardFragment)
-                                        .commit();
-                            }
-                        } else {
-                            Log.d(LOG_TAG, "User role is null");
-                        }
+                        fragmentManager.beginTransaction().show(dashboardFragment).commit();
+                        active = dashboardFragment;
+                        hideAllFragment();
                         return true;
                     case R.id.nav_search:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content, searchFragment).commit();
+                        fragmentManager.beginTransaction().show(searchFragment).commit();
+                        active = searchFragment;
+                        hideAllFragment();
                         return true;
                     case R.id.nav_notifications:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content, notificationFragment).commit();
+                        fragmentManager.beginTransaction().show(notificationFragment).commit();
+                        active = notificationFragment;
+                        hideAllFragment();
                         return true;
                     case R.id.nav_inbox:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content, inboxFragment).commit();
+                        fragmentManager.beginTransaction().show(inboxFragment).commit();
+                        active = inboxFragment;
+                        hideAllFragment();
                         return true;
                 }
                 return false;
             }
         });
+    }
 
+    private void clearFragmentManagerBackstack() {
+        for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+            fragmentManager.popBackStack();
+        }
+    }
+
+    private void hideAllFragment() {
+        fragmentManager.getFragments().forEach(fragment -> {
+            if (!active.equals(fragment)) {
+                fragmentManager.beginTransaction().hide(fragment).commit();
+            }
+        });
     }
 }

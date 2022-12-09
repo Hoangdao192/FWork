@@ -8,9 +8,10 @@
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:id="@+id/imgAvatar"
-        android:src="@drawable/wlop_33se"/>
+        android:src="@drawable/default_avatar"/>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/imgAvatar"
@@ -20,20 +21,19 @@
             android:id="@+id/txtFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên người dùng"
             android:textSize="16sp"
             android:fontFamily="@font/quicksand_bold"
             android:textColor="@color/black"
             />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/txtLastMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xin chào"
             android:textSize="13sp"
             android:fontFamily="@font/quicksand_medium"
             android:textColor="#A0A0A0"
             android:layout_below="@id/txtFullName"/>
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

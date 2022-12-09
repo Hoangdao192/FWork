@@ -106,7 +106,12 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
                                 holder.userName.setText(user.getFullName());
                                 messageRepository.getLastMessage(chanelIdList.get(position), messageModel -> {
                                     if (messageModel != null) {
-                                        holder.txvLastMessage.setText(messageModel.getContent());
+                                        holder.txvLastMessage.setVisibility(View.VISIBLE);
+                                        if (messageModel.getType().equals("Text")) {
+                                            holder.txvLastMessage.setText(messageModel.getContent());
+                                        } else if (messageModel.getType().equals("Image")) {
+                                            holder.txvLastMessage.setText("Đã gửi một ảnh");
+                                        }
                                     }
                                 });
                             });
@@ -117,7 +122,12 @@ public class ChatListRecyclerViewAdapter extends RecyclerView.Adapter<ChatListRe
                             }
                             messageRepository.getLastMessage(chanelIdList.get(position), messageModel -> {
                                 if (messageModel != null) {
-                                    holder.txvLastMessage.setText(messageModel.getContent());
+                                    holder.txvLastMessage.setVisibility(View.VISIBLE);
+                                    if (messageModel.getType().equals("Text")) {
+                                        holder.txvLastMessage.setText(messageModel.getContent());
+                                    } else if (messageModel.getType().equals("Image")) {
+                                        holder.txvLastMessage.setText("Đã gửi một ảnh");
+                                    }
                                 }
                             });
                         }

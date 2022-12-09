@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,8 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     List<PostModel> postModelList;
     PostsAdapter postsAdapter;
+
+    private JobSearchFragment jobSearchFragment = new JobSearchFragment();
 
     private PostRepository postRepository;
 
@@ -111,10 +114,22 @@ public class HomeFragment extends Fragment {
                     startActivity(new Intent(getActivity(), AddPostActivity.class));
                 }
                 if (item.getItemId() == R.id.action_search) {
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .addToBackStack("HomeFragment")
-                            .replace(R.id.content, new JobSearchFragment())
+//                    getActivity().getSupportFragmentManager()
+//                            .beginTransaction()
+//                            .addToBackStack("HomeFragment")
+//                            .replace(R.id.content, new JobSearchFragment())
+//                            .commit();
+
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    if (fragmentManager.findFragmentByTag("PostSearchFragment") == null) {
+                        getActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .add(R.id.content, jobSearchFragment, "PostSearchFragment")
+                                .commit();
+                    }
+                    fragmentManager.beginTransaction()
+                            .addToBackStack("PostSearchFragment")
+                            .show(jobSearchFragment)
                             .commit();
                 } else {
                     // do something

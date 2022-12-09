@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -33,7 +34,11 @@ public class EmployerDashboardFragment extends Fragment {
     private TextView txvFullName, txvEmail;
     private LinearLayout lltProfile, lltPost, lltInterest;
     private LinearLayout lltPostApply, lltChangePassword, lltSignOut;
+
     private ProfileFragment profileFragment;
+    private ShowMyPostFragment showMyPostFragment;
+    private ShowPostLikeFragment showPostLikeFragment;
+    private EmployerShowPostApplyFragment showPostApplyFragment;
 
     private FirebaseAuthHelper firebaseAuthHelper;
 
@@ -45,6 +50,9 @@ public class EmployerDashboardFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("USER_ROLE", UserRole.EMPLOYER);
         profileFragment.setArguments(bundle);
+        showMyPostFragment = new ShowMyPostFragment();
+        showPostLikeFragment = new ShowPostLikeFragment();
+        showPostApplyFragment = new EmployerShowPostApplyFragment();
     }
 
     @Override
@@ -75,10 +83,21 @@ public class EmployerDashboardFragment extends Fragment {
         lltProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .addToBackStack("ProfileFragment")
-                        .replace(R.id.content, profileFragment)
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .addToBackStack("ProfileFragment")
+//                        .replace(R.id.content, profileFragment)
+//                        .commit();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (fragmentManager.findFragmentByTag("Profile Fragment") == null) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.content, profileFragment, "Profile Fragment")
+                            .commit();
+                }
+                fragmentManager.beginTransaction()
+                        .addToBackStack("Profile Fragment")
+                        .show(profileFragment)
                         .commit();
             }
         });
@@ -86,10 +105,22 @@ public class EmployerDashboardFragment extends Fragment {
         lltPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .addToBackStack("PostListFragment")
+//                        .replace(R.id.content, new ShowMyPostFragment())
+//                        .commit();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (fragmentManager.findFragmentByTag("PostListFragment") == null) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.content, showMyPostFragment, "PostListFragment")
+                            .commit();
+                }
+                fragmentManager.beginTransaction()
                         .addToBackStack("PostListFragment")
-                        .replace(R.id.content, new ShowMyPostFragment())
+                        .show(showMyPostFragment)
                         .commit();
             }
         });
@@ -97,10 +128,22 @@ public class EmployerDashboardFragment extends Fragment {
         lltInterest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .addToBackStack("PostLikeFragment")
+//                        .replace(R.id.content, new ShowPostLikeFragment())
+//                        .commit();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (fragmentManager.findFragmentByTag("PostLikeFragment") == null) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.content, showPostLikeFragment, "PostLikeFragment")
+                            .commit();
+                }
+                fragmentManager.beginTransaction()
                         .addToBackStack("PostLikeFragment")
-                        .replace(R.id.content, new ShowPostLikeFragment())
+                        .show(showPostLikeFragment)
                         .commit();
             }
         });
@@ -108,10 +151,21 @@ public class EmployerDashboardFragment extends Fragment {
         lltPostApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .addToBackStack("ShowPostApply")
-                        .replace(R.id.content, new EmployerShowPostApplyFragment())
+//                getActivity().getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .addToBackStack("PostApplyFragment")
+//                        .replace(R.id.content, new CandidateShowPostApplyFragment())
+//                        .commit();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (fragmentManager.findFragmentByTag("PostApplyFragment") == null) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.content, showPostApplyFragment, "PostApplyFragment")
+                            .commit();
+                }
+                fragmentManager.beginTransaction()
+                        .addToBackStack("PostApplyFragment")
+                        .show(showPostApplyFragment)
                         .commit();
             }
         });

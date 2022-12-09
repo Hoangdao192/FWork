@@ -12,6 +12,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -132,8 +133,19 @@ public class ChatListFragment extends Fragment {
         edtSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, chatSearchFragment)
-                        .addToBackStack(null)
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, chatSearchFragment)
+//                        .addToBackStack(null)
+//                        .commit();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (fragmentManager.findFragmentByTag("Chat Search Fragment") == null) {
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.content, chatSearchFragment, "Chat Search Fragment")
+                            .commit();
+                }
+                fragmentManager.beginTransaction()
+                        .addToBackStack("Chat Search Fragment")
+                        .show(chatSearchFragment)
                         .commit();
             }
         });
